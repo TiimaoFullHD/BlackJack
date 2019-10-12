@@ -106,3 +106,51 @@ while carteira > 0:
     croupier.append(baralho.pop())
     jogador.append(baralho.pop())
     croupier.append(baralho.pop())
+
+    while True:
+        os.system('cls' if os.name == 'nt' else 'clear')
+
+        score_jogador = calcula_mao(jogador)
+        score_croupier = calcula_mao(croupier)
+
+
+
+        if parar:
+            printa_carteira()
+            print(f'Aposta   = {valor_aposta}')
+            print('')
+            print('Cartas do croupier: [{}] [{}] '.format(']['.join(croupier), score_croupier))
+            print('Suas cartas:        [{}], Total = [{}] '.format(']['.join(jogador), score_jogador))
+        else:
+            printa_carteira()
+            print(f'Aposta   = {valor_aposta}')
+            print('')
+            print(f'Cartas do croupier: [{croupier[0]}] [?]')
+            print('Suas cartas:        [{}], Total = [{}] '.format(']['.join(jogador), score_jogador))
+            print('')
+
+        if parar: 
+            if score_croupier > 21:
+                print('Croupier estourou! Você ganhou!')
+                carteira += 2*valor_aposta
+                printa_carteira()
+                print('')
+            elif score_croupier == score_jogador:
+                print('Empatou!')
+                carteira += valor_aposta
+                printa_carteira()
+                print('')
+            elif score_jogador > score_croupier:
+                print('Você ganhou!')
+                carteira += 2*valor_aposta
+                printa_carteira()
+                print('')
+            
+            else: 
+                print('Você perdeu!')
+                printa_carteira()
+                print('')
+                
+
+            
+            break    
