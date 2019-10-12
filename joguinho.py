@@ -79,3 +79,30 @@ while carteira > 0:
     else: break
         
     limpa()
+  
+    parar = False
+    primeira_mao = True
+    
+    printa_carteira()
+    print('')
+    valor_aposta = float(input('Digite o valor da aposta: '))
+
+    while valor_aposta > carteira or valor_aposta < 0:
+        print('Valor inválido')
+        valor_aposta = float(input('Digite o valor da aposta: '))
+
+    carteira -= valor_aposta
+
+    print(f'Você apostou {valor_aposta}, e agora tem {carteira} na carteira')  
+
+    random.shuffle(baralho)
+
+    croupier = []
+
+    jogador = []
+
+
+    jogador.append(baralho.pop())
+    croupier.append(baralho.pop())
+    jogador.append(baralho.pop())
+    croupier.append(baralho.pop())
