@@ -150,7 +150,43 @@ while carteira > 0:
                 print('Você perdeu!')
                 printa_carteira()
                 print('')
-                
+                            
+            break 
+               
+        if primeira_mao and score_jogador == 21:
+            print('Blackjack! Você ganhou!')
+            carteira += 2.5*valor_aposta
+            printa_carteira()
+            print('')
+            break
 
-            
-            break    
+        primeira_mao = False
+
+        if score_jogador == 21:
+            print('Ganhou com 21!')
+            carteira += 2*valor_aposta
+            printa_carteira()
+            print('')
+            break
+
+        if score_jogador > 21:
+            print('Você estourou!')
+            printa_carteira()
+            print('')
+            break
+
+        print('O que você quer fazer? ')
+        print(' [1] para mais uma carta')
+        print(' [2] parar')
+        
+        print('')
+        escolha = input('Escolha: ')
+        print('')
+
+
+        if escolha == '1':
+            jogador.append(baralho.pop())
+        elif escolha == '2':
+            parar = True
+            while calcula_mao(croupier) <= 17:
+                croupier.append(baralho.pop())            
