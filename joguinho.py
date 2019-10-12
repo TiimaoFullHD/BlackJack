@@ -44,3 +44,38 @@ while num_b > 5 or num_b < 1:
     num_b = int(input('Valor inválido!\nDigite um valor entre 1 e 5: '))
     
 baralho = num_b*lista_b
+
+carteira = 100
+
+limpa()
+valor_aposta = 0
+
+#entrega cartas
+parar = False
+primeira_mao = True
+
+
+print('BEM VINDO AO CASSINO DO DANIEL!')
+print('')
+
+
+
+while carteira > 0: 
+
+    print('Você quer jogar?')
+    print('')
+    print('[1] para sim.')
+    print('[2] para sair.')
+
+    jogar_sair = int(input('Escolha: '))
+    print('')
+
+    while jogar_sair != 1 and jogar_sair!= 2:
+        limpa()
+        jogar_sair = int(input('Valor inválido!\n\nEscolha:\n[1] para jogar\n[2] para sair'))
+
+    if jogar_sair == 1:
+        print('')
+    else: break
+        
+    limpa()
