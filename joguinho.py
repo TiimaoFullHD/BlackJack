@@ -38,12 +38,6 @@ lista_b = [
 ]
 
 
-print('Com quantos baralhos você quer jogar?')
-num_b = int(input('Digite entre 1 e 5: '))
-while num_b > 5 or num_b < 1:
-    num_b = int(input('Valor inválido!\nDigite um valor entre 1 e 5: '))
-    
-baralho = num_b*lista_b
 
 carteira = 100
 
@@ -54,7 +48,7 @@ valor_aposta = 0
 parar = False
 primeira_mao = True
 
-
+rodada = 1
 print('BEM VINDO AO CASSINO DO DANIEL!')
 print('')
 
@@ -67,7 +61,12 @@ while carteira > 0:
     print('[1] para sim.')
     print('[2] para sair.')
 
-    jogar_sair = int(input('Escolha: '))
+    sjogar_sair = input('Escolha: ')
+    while sjogar_sair != "1" and sjogar_sair != "2":
+        print("invalido")
+        sjogar_sair = input('Escolha: ')
+
+    jogar_sair = int(sjogar_sair)
     print('')
 
     while jogar_sair != 1 and jogar_sair!= 2:
@@ -77,7 +76,18 @@ while carteira > 0:
     if jogar_sair == 1:
         print('')
     else: break
-        
+
+    limpa()
+
+    if rodada == 1:
+        print('Com quantos baralhos você quer jogar?')
+        num_b = int(input('Digite entre 1 e 5: '))
+        while num_b > 5 or num_b < 1:
+            num_b = int(input('Valor inválido!\nDigite um valor entre 1 e 5: '))
+            
+        baralho = num_b*lista_b
+        rodada += 1
+
     limpa()
   
     parar = False
