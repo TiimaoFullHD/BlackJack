@@ -55,7 +55,7 @@ parar = False
 primeira_mao = True
 
 
-print('BEM VINDO AO CASSINO DO DANIEL!')
+print('BEM VINDO AO CASSINO DO DANIEL E DO GUILHERME!')
 print('')
 
 
