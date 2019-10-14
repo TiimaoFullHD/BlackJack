@@ -48,8 +48,8 @@ valor_aposta = 0
 parar = False
 primeira_mao = True
 
-rodada = 1
-print('BEM VINDO AO CASSINO DO DANIEL!')
+
+print('BEM VINDO AO CASSINSPER!')
 print('')
 
 
