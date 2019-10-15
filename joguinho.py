@@ -5,7 +5,6 @@ import random, os
 def limpa():
     os.system('cls' if os.name == 'nt' else 'clear')
 
-
 def printa_carteira():
     print(f'Carteira: {carteira}')
     
@@ -59,12 +58,12 @@ while carteira > 0:
 
     print('Você quer jogar?')
     print('')
-    print('[1] para sim.')
+    print('Digite\n[1] para sim.')
     print('[2] para sair.')
 
     sjogar_sair = input('Escolha: ')
     while sjogar_sair != "1" and sjogar_sair != "2":
-        print("invalido")
+        print("Valor inválido!")
         sjogar_sair = input('Escolha: ')
 
     jogar_sair = int(sjogar_sair)
@@ -82,10 +81,10 @@ while carteira > 0:
 
     if rodada == 1:
         print('Com quantos baralhos você quer jogar?')
-        num_b = int(input('Digite entre 1 e 5: '))
-        while num_b > 5 or num_b < 1:
-            num_b = int(input('Valor inválido!\nDigite um valor entre 1 e 5: '))
-            
+        snum_b = input('Digite entre 1 e 5: ')
+        while snum_b not in ['1','2','3','4','5']:
+            snum_b = input('Valor inválido!\nDigite um valor entre 1 e 5: ')
+        num_b = int(snum_b)
         baralho = num_b*lista_b
         rodada += 1
 
@@ -187,17 +186,19 @@ while carteira > 0:
             break
 
         print('O que você quer fazer? ')
-        print(' [1] para mais uma carta')
-        print(' [2] parar')
+        print('Digite:\n[1] para mais uma carta')
+        print('[2] parar')
         
         print('')
-        escolha = input('Escolha: ')
-        print('')
+        sescolha = input('Escolha: ')
+        while sescolha != '1' and sescolha != '2':
+            print('Valor inválido!')
+            sescolha = input('Escolha: ')
 
 
-        if escolha == '1':
+        if sescolha == '1':
             jogador.append(baralho.pop())
-        elif escolha == '2':
+        elif sescolha == '2':
             parar = True
             while calcula_mao(croupier) <= 17:
                 croupier.append(baralho.pop())            
