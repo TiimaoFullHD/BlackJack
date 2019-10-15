@@ -5,6 +5,7 @@ import random, os
 def limpa():
     os.system('cls' if os.name == 'nt' else 'clear')
 
+
 def printa_carteira():
     print(f'Carteira: {carteira}')
     
@@ -36,7 +37,7 @@ lista_b = [
     'A','2','3','4','5','6','7','8','9','10','J','Q','K'
 ]
 
-
+rodada = 1
 
 carteira = 100
 
@@ -47,7 +48,6 @@ valor_aposta = 0
 parar = False
 primeira_mao = True
 
-rodada = 1
 
 print('BEM VINDO AO CASSINSPER!')
 print('')
@@ -58,12 +58,12 @@ while carteira > 0:
 
     print('Você quer jogar?')
     print('')
-    print('Digite\n[1] para sim.')
+    print('[1] para sim.')
     print('[2] para sair.')
 
     sjogar_sair = input('Escolha: ')
     while sjogar_sair != "1" and sjogar_sair != "2":
-        print("Valor inválido!")
+        print("Valor inválido")
         sjogar_sair = input('Escolha: ')
 
     jogar_sair = int(sjogar_sair)
@@ -82,7 +82,7 @@ while carteira > 0:
     if rodada == 1:
         print('Com quantos baralhos você quer jogar?')
         snum_b = input('Digite entre 1 e 5: ')
-        while snum_b not in ['1','2','3','4','5']:
+        while snum_b not in ['1', '2', '3', '4', '5']:
             snum_b = input('Valor inválido!\nDigite um valor entre 1 e 5: ')
         num_b = int(snum_b)
         baralho = num_b*lista_b
@@ -95,9 +95,9 @@ while carteira > 0:
     
     printa_carteira()
     print('')
-    valor_aposta = float(input('Digite o valor da aposta: '))
-
-    while valor_aposta > carteira or valor_aposta < 0:
+    svalor_aposta = input('Digite o valor da aposta: ')
+    
+    while svalor_aposta > carteira or svalor_aposta < 0 or svalor_aposta == 0:
         print('Valor inválido')
         valor_aposta = float(input('Digite o valor da aposta: '))
 
@@ -186,19 +186,20 @@ while carteira > 0:
             break
 
         print('O que você quer fazer? ')
-        print('Digite:\n[1] para mais uma carta')
-        print('[2] parar')
+        print(' Digite:\n[1] para mais uma carta')
+        print(' [2] parar')
         
         print('')
-        sescolha = input('Escolha: ')
-        while sescolha != '1' and sescolha != '2':
-            print('Valor inválido!')
-            sescolha = input('Escolha: ')
+        escolha = input('Escolha: ')
+        print('')
 
+        while escolha not in '1' and escolha not in '2':
+            print('Valor inválido')
+            escolha = input('Escolha: ')
 
-        if sescolha == '1':
+        if escolha == '1':
             jogador.append(baralho.pop())
-        elif sescolha == '2':
+        elif escolha == '2':
             parar = True
             while calcula_mao(croupier) <= 17:
                 croupier.append(baralho.pop())            
