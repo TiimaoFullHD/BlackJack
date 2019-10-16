@@ -137,3 +137,55 @@ while quer_jogar == True:
                 printa_carteira()
                 break
 
+    for nome in dic_players_cartas:
+        a = (dic_players_cartas[nome])
+        dic_players_score[nome] = calcula_mao(a)
+
+        #lista_calcula_mao.append(score)
+    jj = calcula_mao(cartas_croupier)
+
+    while jj <= 17:
+            cartas_croupier.append(baralho.pop())
+            jj = calcula_mao(cartas_croupier)
+
+
+    '''for nome in dic_players_score:
+        while jj <= 21 and jj < dic_players_score[nome]:
+            cartas_croupier.append(baralho.pop())
+            jj = calcula_mao(cartas_croupier)'''
+
+    for nome in dic_players_score:
+        ps = dic_players_score[nome]
+        if ps > jj and ps <= 21:
+            print(f'{nome} GANHOU!')
+            printa_cartas()
+            dic_players_carteira[nome] += v_aposta*2
+
+        elif ps > 21:
+            printa_cartas()
+            print(f'{nome} ESTOUROU!')
+        
+        elif ps <=21 and jj > 21:
+            printa_cartas()
+            print(f'{nome} GANHOU, Croupier estourou!')
+            dic_players_carteira[nome] += v_aposta*2
+
+        elif ps == jj:
+            printa_cartas
+            print(f'{nome} EMPATOU')
+            dic_players_carteira[nome] += v_aposta
+    
+    respostinha =input('Quer jogar mais uma vez?')
+    if respostinha == "sim":
+        continue 
+    elif respostinha == "fim":
+        break
+    #print('[1] Para sim\n[2] Para não')
+
+    """perguntinha = input('...')
+
+    if perguntinha == '1':
+        quer_jogar = True
+    if perguntinha == '2':
+        quer_jogar = False"""
+
