@@ -177,7 +177,7 @@ while quer_jogar == True:
         for i in '.........':
             time.sleep(.25)
             print(i)
-        limpa()    
+           
 
     for nome in dic_players_cartas:
         a = (dic_players_cartas[nome])
@@ -194,10 +194,6 @@ while quer_jogar == True:
     print(f'As cartas do croupier foram {cartas_croupier} Total: [{calcula_mao(cartas_croupier)}]\n')
     for nome in dic_players_score:
         ps = dic_players_score[nome]
-<<<<<<< HEAD
-        
-=======
->>>>>>> 0864544cdf7133dc29596d98d4eb2cf59962ea65
         if dic_players_carteira[nome] > 0:
             if dic_verifica_primeiramao[nome] == 1:
                 print(f'{nome} GANHOU COM BLACKJACK!')
@@ -205,6 +201,7 @@ while quer_jogar == True:
                 dic_players_carteira[nome] += v_aposta*2.5
                 printa_carteira_sn()
                 pula_linha()
+                
             else:
                 if ps > jj and ps <= 21:
                     print(f'{nome} GANHOU!')
@@ -235,20 +232,16 @@ while quer_jogar == True:
                     printa_carteira_sn()
                     pula_linha()    
 
-    v_resolve = False
+        v_resolve = False
 
-    for nome in dic_players_carteira:
-        if dic_players_carteira[nome] > 0:
-            v_resolve = True
+        for nome in dic_players_carteira:
+            if dic_players_carteira[nome] > 0:
+                v_resolve = True
     
-    if v_resolve == False:
-<<<<<<< HEAD
-        limpa()
-        print('Todo mundo perdeu! HAHHA')
-=======
-        print("Todo mundo perdeu! HAHAHH")
->>>>>>> 0864544cdf7133dc29596d98d4eb2cf59962ea65
-        break
+        if v_resolve == False:
+            limpa()
+            print('Todo mundo perdeu! HAHHA')
+            break
 
     print('Quer jogar mais uma vez?')
     respostinha = input('Digite [sim] para mais uma.\nDigite [fim] para encerrar\n.. ')
