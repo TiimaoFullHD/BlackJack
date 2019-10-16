@@ -37,6 +37,9 @@ def calcula_mao(mao):
 
     return soma
 
+dic_players_cartas = {}
+dic_players_carteira = {}
+
 limpa()
 
 lista_b = [
@@ -56,8 +59,8 @@ while quer_jogar == True:
     baralho = lista_b
     random.shuffle(baralho)
     dic_players_carteira = {}
-    dic_players_cartas = {}
-    dic_players_carteira = {}
+    #dic_players_cartas = {}
+    #dic_players_carteira = {}
     dic_players_score = {}  
     dic_verifica_primeiramao = {}    
 
@@ -136,8 +139,6 @@ while quer_jogar == True:
         while cont != 0:
             if condicao_jogar == 1:
                 if primeira_mao and calcula_mao(dic_players_cartas[nome]) == 21:
-                    #print(f'[nome] Ganhou com BLACKJACK!!')
-                    #carteira += 2.5*valor_aposta
                     print('Fim do turno!')
                     dic_verifica_primeiramao[nome] = 1
                     cont = 0 
@@ -201,7 +202,7 @@ while quer_jogar == True:
         if dic_verifica_primeiramao[nome] == 1:
             print(f'{nome} GANHOU COM BLACKJACK!')
             printa_cartas()
-            dic_players_carteira += v_aposta*2.5
+            dic_players_carteira[nome] += v_aposta*2.5
             printa_carteira_sn()
             pula_linha()
 
