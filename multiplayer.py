@@ -7,7 +7,7 @@ def pula_linha():
     print('')
 
 def printa_carteira():
-    print(f'A carteira de {nome} é {dic_players_carteira[nome]}')
+    print(f'A carteira de {nome.upper()} é {dic_players_carteira[nome]}')
     print('')
 
 def printa_carteira_sn():
@@ -37,9 +37,6 @@ def calcula_mao(mao):
 
     return soma
 
-dic_players_cartas = {}
-dic_players_carteira = {}
-
 limpa()
 
 lista_b = [
@@ -57,10 +54,8 @@ while quer_jogar == True:
     limpa()
     cartas_croupier = []
     baralho = lista_b
-    random.shuffle(baralho)
-    dic_players_carteira = {}
-    #dic_players_cartas = {}
-    #dic_players_carteira = {}
+    random.shuffle(baralho)  
+    dic_players_cartas = {}
     dic_players_score = {}  
     dic_verifica_primeiramao = {}    
 
@@ -70,9 +65,10 @@ while quer_jogar == True:
         num_p = int(snum_p)
         contador_p = 0
         players = []
+        dic_players_carteira = {}
 
         while contador_p < num_p:
-            players.append(input(f'Jogador[{contador_p+1}], digite seu nome:\n... ').upper())
+            players.append(input(f'Jogador[{contador_p+1}], digite seu nome:\n... '))
             contador_p+= 1
 
         for nome in players:
@@ -235,12 +231,18 @@ while quer_jogar == True:
             printa_carteira_sn()
             pula_linha()    
 
+    v_resolve = False
+
+    for nome in dic_players_carteira:
+        if dic_players_carteira[nome] > 0:
+            v_resolve = True
+    
+    if v_resolve == False:
+        break
+
     print('Quer jogar mais uma vez?')
     respostinha = input('Digite [sim] para mais uma.\nDigite [fim] para encerrar\n.. ')
     if respostinha == "sim":
         continue 
     elif respostinha == "fim":
         break
-
-
-
