@@ -19,6 +19,7 @@ def printa_cartas():
 
 def calcula_mao(mao):
     soma = 0
+    
 
     nao_as = [carta for carta in mao if carta != 'A']
     as_ = [carta for carta in mao if carta == 'A']
@@ -89,8 +90,9 @@ while quer_jogar == True:
 
     for nome in players:
         lista_cartas = []
-        lista_cartas.append(baralho.pop())
-        lista_cartas.append(baralho.pop())    
+        if dic_players_carteira[nome] > 0:
+            lista_cartas.append(baralho.pop())
+            lista_cartas.append(baralho.pop())    
         dic_players_cartas[nome] = lista_cartas
         dic_verifica_primeiramao[nome] = 0
 
@@ -194,10 +196,7 @@ while quer_jogar == True:
     print(f'As cartas do croupier foram {cartas_croupier} Total: [{calcula_mao(cartas_croupier)}]\n')
     for nome in dic_players_score:
         ps = dic_players_score[nome]
-<<<<<<< HEAD
         
-=======
->>>>>>> 0864544cdf7133dc29596d98d4eb2cf59962ea65
         if dic_players_carteira[nome] > 0:
             if dic_verifica_primeiramao[nome] == 1:
                 print(f'{nome} GANHOU COM BLACKJACK!')
@@ -233,8 +232,46 @@ while quer_jogar == True:
                     printa_cartas()
                     print(f'{nome} PERDEU!')
                     printa_carteira_sn()
-                    pula_linha()    
-
+                    pula_linha()   
+                    
+        elif dic_players_carteira[nome] == 0:
+            if len(dic_players_cartas[nome]) > 0:
+                if dic_verifica_primeiramao[nome] == 1:
+                    print(f'{nome} GANHOU COM BLACKJACK!')
+                    printa_cartas()
+                    #dic_players_carteira[nome] += v_aposta*2.5
+                    printa_carteira_sn()
+                    pula_linha()
+                else:
+                    if ps > jj and ps <= 21:
+                        print(f'{nome} GANHOU!')
+                        printa_cartas()
+                        #dic_players_carteira[nome] += v_aposta*2
+                        printa_carteira_sn()
+                        pula_linha()
+                    elif ps > 21:
+                        printa_cartas()
+                        print(f'{nome} ESTOUROU!')
+                        printa_carteira_sn()
+                        pula_linha()       
+                    elif ps <=21 and jj > 21:
+                        printa_cartas()
+                        print(f'{nome} GANHOU, Croupier estourou!')
+                        #dic_players_carteira[nome] += v_aposta*2
+                        printa_carteira_sn()
+                        pula_linha()
+                    elif ps == jj:
+                        printa_cartas()
+                        print(f'{nome} EMPATOU')
+                        #dic_players_carteira[nome] += v_aposta
+                        printa_carteira_sn()
+                        pula_linha()        
+                    else:
+                        printa_cartas()
+                        print(f'{nome} PERDEU!')
+                        printa_carteira_sn()
+                        pula_linha()
+ 
     v_resolve = False
 
     for nome in dic_players_carteira:
@@ -242,12 +279,8 @@ while quer_jogar == True:
             v_resolve = True
     
     if v_resolve == False:
-<<<<<<< HEAD
         limpa()
         print('Todo mundo perdeu! HAHHA')
-=======
-        print("Todo mundo perdeu! HAHAHH")
->>>>>>> 0864544cdf7133dc29596d98d4eb2cf59962ea65
         break
 
     print('Quer jogar mais uma vez?')
