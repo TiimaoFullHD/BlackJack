@@ -95,17 +95,13 @@ while carteira > 0:
     
     printa_carteira()
     print('')
-<<<<<<< HEAD
-    svalor_aposta = input('Digite o valor da aposta: ')
-    
-    while svalor_aposta > carteira or svalor_aposta < 0 or svalor_aposta == 0:
-=======
     valor_aposta = float(input('Digite o valor da aposta: '))
     
-    while valor_aposta > carteira or valor_aposta < 0 or valor_aposta == 0:
->>>>>>> 7c73fd14f37595c3ef903417551c92e2dcdf2705
+    while valor_aposta > carteira or valor_aposta <= 0:
         print('Valor inválido')
         valor_aposta = float(input('Digite o valor da aposta: '))
+    
+    #valor_aposta = svalor_aposta
 
     carteira -= valor_aposta
 
@@ -192,13 +188,8 @@ while carteira > 0:
             break
 
         print('O que você quer fazer? ')
-<<<<<<< HEAD
-        print(' Digite:\n[1] para mais uma carta')
-        print(' [2] parar')
-=======
         print('Digite:\n[1] para mais uma carta')
         print('[2] parar')
->>>>>>> 7c73fd14f37595c3ef903417551c92e2dcdf2705
         
         print('')
         escolha = input('Escolha: ')
