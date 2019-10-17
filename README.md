@@ -9,7 +9,7 @@ Guilherme Carvalho, guilhermeacc@al.insper.edu.br
 
 Caro professor Luciano,
 
-Fizemos um jogo que funciona só single player outro jogo diferente que funciona tanto para single, quanto para 
+Fizemos dois jogos, um jogo que funciona só single player e outro que funciona tanto para single, quanto para 
 multiplayer, com um número ilimitado de jogadores.
 
 Entre as features obrigatórias, não implementamos apenas a 3 (Split).

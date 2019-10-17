@@ -1,5 +1,5 @@
 import random, os, time
-
+#funcoes 
 def limpa():
     os.system('cls' if os.name == 'nt' else 'clear')
 
@@ -16,7 +16,7 @@ def printa_carteira_sn():
 
 def printa_cartas():
     print(f'{nome},\nSuas cartas são: {dic_players_cartas[nome]}, Total = [{calcula_mao(dic_players_cartas[nome])}]')
-
+#calculo dos valores das cartas:
 def calcula_mao(mao):
     soma = 0
     
@@ -37,7 +37,7 @@ def calcula_mao(mao):
             soma += 1
 
     return soma
-
+#para limpar o codigo 
 limpa()
 
 lista_b = [
@@ -100,7 +100,7 @@ while quer_jogar == True:
 
     limpa()
 
-
+#sorteio das cartas para cada jogador.
     for nome in players:
         lista_cartas = []
         if dic_players_carteira[nome] > 0:
@@ -120,7 +120,7 @@ while quer_jogar == True:
     limpa()
 
 
-
+#criterios de aposta.
     for nome in dic_players_cartas:
         cont = 1 
         cont_c = 1
@@ -137,7 +137,7 @@ while quer_jogar == True:
                 pula_linha()
                 print(f'{nome},\nQuanto você quer apostar?')
                 sv_aposta = input('... ')
-
+#retirando valores invalidos e restringindo aposta:
                 while verifica1:
                     try:
                         if (0 < int(sv_aposta) <= dic_players_carteira[nome] ):
@@ -221,7 +221,7 @@ while quer_jogar == True:
             cartas_croupier.append(baralho.pop())
             jj = calcula_mao(cartas_croupier)
 
-
+#mostrando cartas e criando criterios para ganhadores:
     print(f'As cartas do croupier foram {cartas_croupier} Total: [{calcula_mao(cartas_croupier)}]\n')
     for nome in dic_players_score:
         ps = dic_players_score[nome]
