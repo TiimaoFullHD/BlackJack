@@ -40,20 +40,11 @@ def calcula_mao(mao):
 
 limpa()
 
-'''lista_b = [
+lista_b = [
     'A','2','3','4','5','6','7','8','9','10','J','Q','K',
     'A','2','3','4','5','6','7','8','9','10','J','Q','K',
     'A','2','3','4','5','6','7','8','9','10','J','Q','K',
     'A','2','3','4','5','6','7','8','9','10','J','Q','K'
-]'''
-lista_b = [
-    'A','J','Q','A',
-    'A','J','Q','A',
-    'A','J','Q','A',
-    'A','J','Q','A',
-    'A','J','Q','A',
-    'A','J','Q','A',
-
 ]
 
 quer_jogar = True
@@ -72,8 +63,20 @@ while quer_jogar == True:
     dic_player_carteira_variavel = {}
 
     if rodada == 1:
+        verifica = True
+
         snum_p = input('Quantas pessoas vão jogar? ')
+
+        while verifica:
+            try:
+                num_p = int(snum_p)
+                verifica = False
+            except:
+                print("Inválido\n:(")
+                pula_linha()
+                snum_p = input('Quantas pessoas vão jogar? ')
         num_p = int(snum_p)
+
         contador_p = 0
         players = []
         dic_players_carteira = {}
@@ -122,6 +125,7 @@ while quer_jogar == True:
         cont = 1 
         cont_c = 1
         condicao_jogar = 1
+        verifica1 = True
 
         while cont_c != 0:
             if dic_players_carteira[nome] == 0:
@@ -132,11 +136,19 @@ while quer_jogar == True:
                 printa_carteira()
                 pula_linha()
                 print(f'{nome},\nQuanto você quer apostar?')
-                v_aposta = int(input('... '))
-                while v_aposta <= 0 or v_aposta > dic_players_carteira[nome]:
-                    print('Valor invalido!')
-                    v_aposta = int(input('Digite novamente\n.. '))
+                sv_aposta = input('... ')
 
+                while verifica1:
+                    try:
+                        if (0 < int(sv_aposta) <= dic_players_carteira[nome] ):
+                            verifica1 = False
+                        else:
+                            print("Valor inválido")
+                            sv_aposta = input('Quanto quer apostar?\n.. ')
+                    except:
+                        print("Valor inválido")
+                        sv_aposta = input('Quanto quer apostar?\n.. ')
+                v_aposta = int(sv_aposta)
                 dic_player_aposta[nome] = v_aposta 
 
                 if dic_player_aposta[nome] == dic_players_carteira[nome]:
@@ -170,6 +182,7 @@ while quer_jogar == True:
                     pula_linha()
 
                     if escolha == '1':
+                        #lista_cartas.append(baralho.pop())
                         dic_players_cartas[nome].append(baralho.pop())
                     if escolha == '2':
                         print('Fim do turno!')
@@ -201,6 +214,7 @@ while quer_jogar == True:
         a = (dic_players_cartas[nome])
         dic_players_score[nome] = calcula_mao(a)
 
+        #lista_calcula_mao.append(score)
     jj = calcula_mao(cartas_croupier)
 
     while jj <= 17:
