@@ -1,6 +1,8 @@
-import random, os
+import random
+import os
 
-#funçoes 
+# funçoes
+
 
 def limpa():
     os.system('cls' if os.name == 'nt' else 'clear')
@@ -8,8 +10,26 @@ def limpa():
 
 def printa_carteira():
     print(f'Carteira: {carteira}')
-    
-        
+
+
+def printador(jogador, croupier, score_croupier, score_jogador):
+    print(f'Aposta   = {valor_aposta}')
+    print('')
+    print('Cartas do croupier: [{}] [{}] '.format(
+        ']['.join(croupier), score_croupier))
+    print('Suas cartas:        [{}], Total = [{}] '.format(
+        ']['.join(jogador), score_jogador))
+    return None
+
+def printa_cartas(valor_aposta, croupier, jogador, score_jogador):
+    print(f'Aposta   = {valor_aposta}')
+    print('')
+    print(f'Cartas do croupier: [{croupier[0]}] [?]')
+    print('Suas cartas:        [{}], Total = [{}] '.format(
+        ']['.join(jogador), score_jogador))
+    print('')
+    return None
+
 def calcula_mao(mao):
     soma = 0
 
@@ -18,7 +38,7 @@ def calcula_mao(mao):
 
     for carta in nao_as:
         if carta in 'JQK':
-            soma += 10 
+            soma += 10
         else:
             soma += int(carta)
 
@@ -30,11 +50,12 @@ def calcula_mao(mao):
 
     return soma
 
+
 lista_b = [
-    'A','2','3','4','5','6','7','8','9','10','J','Q','K',
-    'A','2','3','4','5','6','7','8','9','10','J','Q','K',
-    'A','2','3','4','5','6','7','8','9','10','J','Q','K',
-    'A','2','3','4','5','6','7','8','9','10','J','Q','K'
+    'A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K',
+    'A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K',
+    'A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K',
+    'A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'
 ]
 
 rodada = 1
@@ -44,7 +65,7 @@ carteira = 100
 limpa()
 valor_aposta = 0
 
-#entrega cartas
+# entrega cartas
 parar = False
 primeira_mao = True
 
@@ -53,8 +74,7 @@ print('BEM VINDO AO CASSINSPER!')
 print('')
 
 
-
-while carteira > 0: 
+while carteira > 0:
 
     print('Você quer jogar?')
     print('')
@@ -69,13 +89,15 @@ while carteira > 0:
     jogar_sair = int(sjogar_sair)
     print('')
 
-    while jogar_sair != 1 and jogar_sair!= 2:
+    while jogar_sair != 1 and jogar_sair != 2:
         limpa()
-        jogar_sair = int(input('Valor inválido!\n\nEscolha:\n[1] para jogar\n[2] para sair'))
+        jogar_sair = int(
+            input('Valor inválido!\n\nEscolha:\n[1] para jogar\n[2] para sair'))
 
     if jogar_sair == 1:
         print('')
-    else: break
+    else:
+        break
 
     limpa()
 
@@ -89,30 +111,29 @@ while carteira > 0:
         rodada += 1
 
     limpa()
-  
+
     parar = False
     primeira_mao = True
-    
+
     printa_carteira()
     print('')
     valor_aposta = float(input('Digite o valor da aposta: '))
-    
+
     while valor_aposta > carteira or valor_aposta <= 0:
         print('Valor inválido')
         valor_aposta = float(input('Digite o valor da aposta: '))
-    
+
     #valor_aposta = svalor_aposta
 
     carteira -= valor_aposta
 
-    print(f'Você apostou {valor_aposta}, e agora tem {carteira} na carteira')  
+    print(f'Você apostou {valor_aposta}, e agora tem {carteira} na carteira')
 
     random.shuffle(baralho)
 
     croupier = []
 
     jogador = []
-
 
     jogador.append(baralho.pop())
     croupier.append(baralho.pop())
@@ -125,23 +146,14 @@ while carteira > 0:
         score_jogador = calcula_mao(jogador)
         score_croupier = calcula_mao(croupier)
 
-
-
         if parar:
             printa_carteira()
-            print(f'Aposta   = {valor_aposta}')
-            print('')
-            print('Cartas do croupier: [{}] [{}] '.format(']['.join(croupier), score_croupier))
-            print('Suas cartas:        [{}], Total = [{}] '.format(']['.join(jogador), score_jogador))
+            printador(jogador, croupier, score_croupier, score_jogador)
         else:
             printa_carteira()
-            print(f'Aposta   = {valor_aposta}')
-            print('')
-            print(f'Cartas do croupier: [{croupier[0]}] [?]')
-            print('Suas cartas:        [{}], Total = [{}] '.format(']['.join(jogador), score_jogador))
-            print('')
+            printa_cartas(valor_aposta, croupier, jogador, score_jogador)
 
-        if parar: 
+        if parar:
             if score_croupier > 21:
                 print('Croupier estourou! Você ganhou!')
                 carteira += 2*valor_aposta
@@ -157,14 +169,14 @@ while carteira > 0:
                 carteira += 2*valor_aposta
                 printa_carteira()
                 print('')
-            
-            else: 
+
+            else:
                 print('Você perdeu!')
                 printa_carteira()
                 print('')
-                            
-            break 
-               
+
+            break
+
         if primeira_mao and score_jogador == 21:
             print('Blackjack! Você ganhou!')
             carteira += 2.5*valor_aposta
@@ -190,7 +202,7 @@ while carteira > 0:
         print('O que você quer fazer? ')
         print('Digite:\n[1] para mais uma carta')
         print('[2] parar')
-        
+
         print('')
         escolha = input('Escolha: ')
         print('')
@@ -204,4 +216,4 @@ while carteira > 0:
         elif escolha == '2':
             parar = True
             while calcula_mao(croupier) <= 17:
-                croupier.append(baralho.pop())  
+                croupier.append(baralho.pop())
